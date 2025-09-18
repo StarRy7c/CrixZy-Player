@@ -9,21 +9,20 @@
         html, body {
             margin: 0;
             padding: 0;
-            height: 100%;
+            height: 100vh; /* Use viewport height */
             width: 100%;
             overflow: hidden; /* Prevent scrollbars */
             background-color: #000; /* Simple black background for fast loading */
             font-family: 'Arial', 'Helvetica Neue', sans-serif;
+            display: flex; /* Use flexbox for layout */
+            flex-direction: column; /* Stack elements vertically */
         }
 
         /* Main container for the video player */
         .video-container {
+            flex-grow: 1; /* Allow the container to fill available space */
             width: 100%;
-            /* Make the video container fill the screen, leaving space for the bottom bar */
-            height: calc(100% - 50px);
-            position: absolute;
-            top: 0;
-            left: 0;
+            position: relative; /* Needed for JW Player to size correctly */
         }
 
         /* JW Player element itself */
@@ -34,24 +33,27 @@
 
         /* Fixed bar at the bottom for the Telegram link */
         .telegram-bar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
             height: 50px;
-            background-color: #e74c3c; /* Red color for importance */
+            flex-shrink: 0; /* Prevent the bar from shrinking */
+            width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
             box-sizing: border-box;
-            border-top: 1px solid #c0392b;
-            animation: pulse-warning 2s infinite; /* Add a pulsing animation */
+            animation: color-cycle 4s infinite; /* Add the new color cycle animation */
         }
-
-        @keyframes pulse-warning {
-            0% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7); }
-            70% { box-shadow: 0 0 10px 20px rgba(231, 76, 60, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0); }
+        
+        @keyframes color-cycle {
+            0%, 100% {
+                background-color: #e74c3c;
+                border-top: 1px solid #c0392b;
+                box-shadow: 0 0 10px rgba(231, 76, 60, 0.7);
+            }
+            50% {
+                background-color: #0088cc;
+                border-top: 1px solid #006699;
+                box-shadow: 0 0 10px rgba(0, 136, 204, 0.7);
+            }
         }
 
 
@@ -100,6 +102,7 @@
             max-width: 400px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             transform: scale(0.9);
+            opacity: 0;
             animation: popup-fade-in 0.5s forwards;
         }
 
@@ -239,5 +242,4 @@
 
 </body>
 </html>
-
 
