@@ -14,13 +14,11 @@
             overflow: hidden; /* Prevent scrollbars */
             background-color: #000; /* Simple black background for fast loading */
             font-family: 'Arial', 'Helvetica Neue', sans-serif;
-            display: flex; /* Use flexbox for layout */
-            flex-direction: column; /* Stack elements vertically */
         }
 
         /* Main container for the video player */
         .video-container {
-            flex-grow: 1; /* Allow the container to fill available space */
+            height: calc(100vh - 50px); /* Set height to fill space above the bar */
             width: 100%;
             position: relative; /* Needed for JW Player to size correctly */
         }
@@ -34,7 +32,6 @@
         /* Fixed bar at the bottom for the Telegram link */
         .telegram-bar {
             height: 50px;
-            flex-shrink: 0; /* Prevent the bar from shrinking */
             width: 100%;
             display: flex;
             align-items: center;
@@ -242,4 +239,5 @@
 
 </body>
 </html>
+
 
